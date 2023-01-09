@@ -12,4 +12,4 @@ The HTTP-API is used for one-way messaging only. Therefore, you need to provide 
 | --------- | ----------- | -------- |
 | Username | Your Easy Send SMS username | Mandatory |
 | Password | Your Easy Send SMS password | Mandatory |
-| From | Sender Name that the message will appear from.__ **Max Length of 18 if numeric.**__ **Max Length of 11 if alphanumeric.**__ To prefix the plus sign (+) to the sender’s address when the message is displayed on their cell phone, please prefix the plus sign to your sender’s address while submitting the message (note the plus sign should be URL encoded). Additional restrictions on this field may be enforced by the SMSC. | Mandatory |
+| From | Sender Name that the message will appear from. <br /> **Max Length of 18 if numeric.** <br /> **Max Length of 11 if alphanumeric.** <br /> To prefix the plus sign (+) to the sender’s address when the message is displayed on their cell phone, please prefix the plus sign to your sender’s address while submitting the message (note the plus sign should be URL encoded). Additional restrictions on this field may be enforced by the SMSC. | Mandatory |
