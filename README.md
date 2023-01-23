@@ -1,6 +1,4 @@
-# EasySendSMS HTTP SMS API
-
-## HTTP(s) API (Get, Post Method)
+# HTTP(s) API (Get, Post Method)
 
 This page provides a reference for all features available to you via the HTTP interface for sending SMS.
 
@@ -9,6 +7,7 @@ The HTTP-API allows you to integrate your system (client) to Easy Send SMS using
 The Client issues either a GET or POST request to the EasySendSMS HTTP API supplying a list of required parameters. Our system issues back a HTTP response which indicates the status of the sent message.
 
 The HTTP-API is used for one-way messaging only.
+
 
 | Parameter | Description | Presence |
 | --------- | ----------- | -------- |
@@ -19,6 +18,7 @@ The HTTP-API is used for one-way messaging only.
 | Text | The message to be sent. It can be English as plain text or any other language as Unicode, max message length 5 parts. For concatenated (long) messages every 153 characters are counted as one message for plain text and 67 characters for Unicode, as the rest of the characters will be used by the system for packing extra information for re-assembling the message on the cell phone | Mandatory |
 | Type | It indicates the type of message. Values for type include: <br /> 0: Plain text (GSM 3.38 Character encoding) <br /> 1: Unicode (For any other language) | Mandatory |
 
+
 ## HTTP Response
 
 The HTTP response from our system contains the following:
@@ -27,6 +27,7 @@ Status Code
 Sent OK Message ID (Internal use only)
 SMS ID
 Error message (if present)
+
 
 ## Status Codes
 
@@ -50,6 +51,7 @@ ERROR:1001
 
 Below are example for (Get Method) request when using the HTTP interface.
 
+
 #### Example Send Single SMS (English)
 
 **Username:** testuser
@@ -70,6 +72,7 @@ The message has to be URL encoded and the type parameter has to be set to (type=
 OK: 760d54eb-3a82-405c-a7a7-0a0096833615
 ```
 
+
 ### Example Send To Multi Numbers ( Bulk SMS )
 
 ```
@@ -86,6 +89,7 @@ Note: Duplicate numbers will be ignored.
 OK: 760d54eb-3a82-405c-a7a7-0a0096833615,OK: 34763d84-683e-4b53-bd9f-fc9eb8c532b7
 ```
 
+
 ### Example Send Single SMS (Unicode)
 
 ```
@@ -100,6 +104,7 @@ The message has to be encoded on the UTF-16BE format and the type parameter has 
 OK:1234567890123
 ```
 
+
 ## API rate limit:
 
 To maintain a high quality of service to all customers, EasySendSMS API applies rate limits for its SMS API. The default request rate limit is 30 request per second per account and can reach up to 150 requests per second per IP address, ( Contact our support if you wish to have that ).
@@ -109,6 +114,8 @@ The API will reject all requests exceeding this rate limit with 429 Too Many Req
 The SMPP connection rate limit can reach up to 300 to 500 SMS per sec and can be adjusted upon request, ( Contact our support if you wish to have that ).
 You can retry the request after 1 second.
 
+
+
 ### Status Codes
 
 | Parameter | Description |
@@ -117,6 +124,8 @@ You can retry the request after 1 second.
 | Delivrd | The message has been received by the handset. |
 | Expired | The carrier has timed out. |
 | Undeliv | The messages failed to reach the handset. |
+
+
 
 ### API Error Codes:
 
@@ -132,6 +141,8 @@ You can retry the request after 1 second.
 | 1008 | Internal error (do NOT re-submit the same message again). |
 | 1009 | Service not available (do NOT re-submit the same message again). |
 
+
+
 ### Call The API By Code
 
 ## .NET
@@ -145,6 +156,7 @@ request.AddHeader("Cookie", "ASPSESSIONIDAWRTTQDQ=AELBOALACIGEEPOBCMFMMJBG");
 IRestResponse response = client.Execute(request);
 Console.WriteLine(response.Content);
 ```
+
 
 ## PHP
 ```
@@ -174,6 +186,7 @@ echo $response;
 
 ?>
 ```
+
 
 ## Java
 ```
