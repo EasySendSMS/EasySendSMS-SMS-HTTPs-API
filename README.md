@@ -168,49 +168,42 @@ You can retry the request after 1 second.
 
 ## PHP
 ```
-<?php
-
-$curl = curl_init();
-
-curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://api.easysendsms.app/bulksms?username=username&password=password&
-  from=Test&to=12345678910&text=Hello%2520world&type=0',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_HTTPHEADER => array(
-    'Cookie: ASPSESSIONIDCWQRASQQ=BLLIBPGCFLJIPPNALJBOCADC'
-  ),
-));
-
-$response = curl_exec($curl);
-
-curl_close($curl);
-echo $response;
-
-?>
+ $curl = curl_init();
+                                                                                
+ curl_setopt_array($curl, array(
+ CURLOPT_URL => 'https://api.easysendsms.app/bulksms',
+ CURLOPT_RETURNTRANSFER => true,
+ CURLOPT_ENCODING => '',
+ CURLOPT_MAXREDIRS => 10,
+ CURLOPT_TIMEOUT => 0,
+ CURLOPT_FOLLOWLOCATION => true,
+ CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+ CURLOPT_CUSTOMREQUEST => 'POST',
+ CURLOPT_POSTFIELDS => 'username=username&password=password&to=12345678900&from=test&text=Hello%20world&type=0',
+ CURLOPT_HTTPHEADER => array(
+ 'Content-Type: application/x-www-form-urlencoded',
+ 'Cookie: ASPSESSIONIDASCQBARR=NKOHDCHDOFEOOALJIGDGGPAM'
+ ),
+ ));
+                                                                                
+ $response = curl_exec($curl);
+                                                                                
+ curl_close($curl);
+ echo $response;
 ```
 
 
 ## Java
 ```
-//The OkHttpClient is an external package, you need to install it before making the request, 
-//And don't forget to add user permission for the internet inside "\MyApplication\app\src\main\AndroidManifest.xml"
-//Also, you need to add required dependencies inside "MyApplication\app\build.gradle"
-
-OkHttpClient client = new OkHttpClient().newBuilder()
-   .build();
-MediaType mediaType = MediaType.parse("text/plain");
-RequestBody body = RequestBody.create(mediaType, "");
-Request request = new Request.Builder()
-   .url("https://api.easysendsms.app/bulksms?username=username&
-   password=password&from=Test&to=12345678910&text=Hello%20world&type=0")
-   .method("POST", body)
-   .addHeader("Cookie", "ASPSESSIONIDCWQRASQQ=BLLIBPGCFLJIPPNALJBOCADC")
-   .build();
-Response response = client.newCall(request).execute();
+    Unirest.setTimeouts(0, 0);
+    HttpResponse response = Unirest.post("https://api.easysendsms.app/bulksms")
+    .header("Content-Type", "application/x-www-form-urlencoded")
+    .header("Cookie", "ASPSESSIONIDASCQBARR=NKOHDCHDOFEOOALJIGDGGPAM")
+    .field("username", "username")
+    .field("password", "password")
+    .field("to", "12345678900")
+    .field("from", "test")
+    .field("text", "Hello world")
+    .field("type", "0")
+    .asString();
 ```
