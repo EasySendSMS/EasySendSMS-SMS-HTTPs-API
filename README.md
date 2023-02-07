@@ -147,14 +147,22 @@ You can retry the request after 1 second.
 
 ## .NET
 ```
-var client = new RestClient("https://api.easysendsms.app/bulksms?username=testuser&
-password=secret&from=Test&to=12345678910,12345678910,12345678910,12345678910,12345678910&
-text=Hello%20world&type=0");
-client.Timeout = -1;
-var request = new RestRequest(Method.GET);
-request.AddHeader("Cookie", "ASPSESSIONIDAWRTTQDQ=AELBOALACIGEEPOBCMFMMJBG");
-IRestResponse response = client.Execute(request);
-Console.WriteLine(response.Content);
+    var options = new RestClientOptions("")
+    {
+    MaxTimeout = -1,
+    };
+    var client = new RestClient(options);
+    var request = new RestRequest("https://api.easysendsms.app/bulksms", Method.Post);
+    request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.AddHeader("Cookie", "ASPSESSIONIDASCQBARR=NKOHDCHDOFEOOALJIGDGGPAM");
+    request.AddParameter("username", "username");
+    request.AddParameter("password", "password");
+    request.AddParameter("to", "12345678900");
+    request.AddParameter("from", "test");
+    request.AddParameter("text", "Hello world");
+    request.AddParameter("type", "0");
+    RestResponse response = await client.ExecuteAsync(request);
+    Console.WriteLine(response.Content);
 ```
 
 
